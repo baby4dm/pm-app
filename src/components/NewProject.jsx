@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Input from "./Input";
 import Modal from "./Modal";
 
-export default function NewProject({ onSave }) {
+export default function NewProject({ onSave, onCancel }) {
   const title = useRef();
   const description = useRef();
   const date = useRef();
@@ -47,7 +47,10 @@ export default function NewProject({ onSave }) {
       </Modal>
       <div className="flex flex-col gap-6 w-full p-12 max-w-[60rem] mx-auto">
         <menu className="flex gap-3 self-end">
-          <button className="bg-zinc-200 py-2 px-4 rounded-lg hover:bg-slate-800 hover:text-white hover:scale-105">
+          <button
+            onClick={onCancel}
+            className="bg-zinc-200 py-2 px-4 rounded-lg hover:bg-slate-800 hover:text-white hover:scale-105"
+          >
             Cancel
           </button>
           <button

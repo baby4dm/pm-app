@@ -1,4 +1,9 @@
-export default function Sidebar({ onAddProject, projects, onSelect }) {
+export default function Sidebar({
+  onAddProject,
+  projects,
+  onSelect,
+  selectedProjectId,
+}) {
   function handleSelect(event) {
     onSelect(event.target.id);
   }
@@ -12,16 +17,19 @@ export default function Sidebar({ onAddProject, projects, onSelect }) {
         + Add Project
       </button>
       <ul className="text-white w-full flex flex-col gap-2 mt-4">
-        {projects.map((prj) => (
-          <li
-            onClick={handleSelect}
-            className="w-full text-white rounded-lg px-4 py-2 hover:bg-zinc-700 cursor-pointer"
-            key={prj.id}
-            id={prj.id}
-          >
-            {prj.title}
-          </li>
-        ))}
+        {projects.map((prj) => {
+          const isSelected = prj.id === selectedProjectId;
+          return (
+            <li
+              onClick={handleSelect}
+              className={`w-full text-white rounded-lg px-4 py-2 hover:bg-zinc-700 cursor-pointer ${isSelected ? "bg-zinc-700" : ""}`}
+              key={prj.id}
+              id={prj.id}
+            >
+              {prj.title}
+            </li>
+          );
+        })}
       </ul>
     </aside>
   );
