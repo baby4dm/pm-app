@@ -32,6 +32,16 @@ function App() {
     });
   }
 
+  function handleDelete() {
+    setProjectState((prev) => {
+      return {
+        projects: prev.projects.filter(
+          (prj) => prj.id !== prev.selectedProjectId,
+        ),
+        selectedProjectId: undefined,
+      };
+    });
+  }
   if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onAddProject={handleAddProject} />;
   } else if (projectState.selectedProjectId === null) {
@@ -41,7 +51,9 @@ function App() {
     const foundedProject = projectState.projects.find(
       (prj) => prj.id === projectState.selectedProjectId,
     );
-    content = <SelectProject project={foundedProject} />;
+    content = (
+      <SelectProject onDelete={handleDelete} project={foundedProject} />
+    );
   }
   return (
     <main className="flex h-screen py-10">
