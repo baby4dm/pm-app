@@ -4,11 +4,8 @@ export default function Sidebar({
   onSelect,
   selectedProjectId,
 }) {
-  function handleSelect(event) {
-    onSelect(event.target.id);
-  }
   return (
-    <aside className="bg-stone-950 text-white w-1/3 rounded-r-2xl p-8 pt-120 flex flex-col items-start gap-5 max-w-[22rem]">
+    <aside className="bg-stone-950 text-white w-1/3 rounded-r-2xl p-8 flex flex-col items-start gap-5 max-w-[22rem]">
       <h2 className="font-mono font-bold text-xl">YOUR PROJECTS</h2>
       <button
         onClick={onAddProject}
@@ -21,7 +18,7 @@ export default function Sidebar({
           const isSelected = prj.id === selectedProjectId;
           return (
             <li
-              onClick={handleSelect}
+              onClick={() => onSelect(prj.id)}
               className={`w-full text-white rounded-lg px-4 py-2 hover:bg-zinc-700 cursor-pointer ${isSelected ? "bg-zinc-700" : ""}`}
               key={prj.id}
               id={prj.id}

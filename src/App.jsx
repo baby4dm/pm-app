@@ -81,13 +81,13 @@ function App() {
   } else if (projectState.selectedProjectId === null) {
     content = <NewProject onSave={handleSave} onCancel={handleCancel} />;
   } else {
-    const foundedProject = projectState.projects.find(
+    const foundProject = projectState.projects.find(
       (prj) => prj.id === projectState.selectedProjectId,
     );
     content = (
       <SelectProject
         onDelete={handleDelete}
-        project={foundedProject}
+        project={foundProject}
         onAddTask={handleAddTask}
         onRemoveTask={handleRemoveTask}
       />

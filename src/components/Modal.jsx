@@ -14,7 +14,11 @@ const Modal = forwardRef(function Modal({ children }, ref) {
     dialog.current.close();
   }
   return createPortal(
-    <dialog ref={dialog} className="p-5 rounded-lg">
+    <dialog
+      ref={dialog}
+      className="p-5 rounded-lg"
+      onClose={() => dialog.current.close()}
+    >
       <div className="flex flex-col gap-2">
         {children}
         <button
